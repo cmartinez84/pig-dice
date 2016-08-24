@@ -59,7 +59,7 @@ $(function() {
       $("#player1name").toggleClass("red");
       $("#player2name").toggleClass("red");
       $("#buttonRoll").click(function(){
-        $("#buttonPass").prop("disabled", true);
+        $("#buttonPass").prop("disabled", false);
           var rollValue = player1.roll();
           $("#dice1").text(player1.dice1);
           $("#dice2").text(player1.dice2);
@@ -68,7 +68,7 @@ $(function() {
           if(player1.dice1 ===1 || player1.dice2 ===1){
             changePlayer2();
           }
-          if(player1.dice1 === player1.dice2){
+          else if(player1.dice1 === player1.dice2){
             $("#buttonPass").prop("disabled", true)
           }
         });
@@ -91,7 +91,7 @@ $(function() {
         if(player2.dice1 ===1 || player2.dice2 ===1){
           changePlayer1();
         }
-        if(player2.dice1 === player2.dice2){
+        else if(player2.dice1 === player2.dice2){
           $("#buttonPass").prop("disabled", true);
         }
         });
