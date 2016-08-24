@@ -22,19 +22,23 @@ Player.prototype.generateScore = function(newPoints){
     alert("you win!");
   }
 }
-
-var rollTotal = 0;
 var roll = function(){
-  var individualRoll= Math.floor((Math.random() * 6) + 1);
-  if(individualRoll === 1){
+   return Math.floor((Math.random() * 6) + 1);
+}
+var rollTotal = 0;
+var assessRoll = function(value){
+  if(value === 1){
     rollTotal = 0;
-    pass();
+    return rollTotal;
   }
   else{
-    rollTotal += individualRoll;
+    rollTotal += value;
   }
-  console.log(rollTotal);
+  return rollTotal;
 }
+
+
+
 
 var pass = function(){
   newPerson.generateScore(rollTotal);
@@ -54,5 +58,11 @@ $(function() {
     $("#player2name").text(player2.name);
     $("#player2total").text(player2.totalScore);
   });// end submit
+  $("#buttonRoll").click(function(){
+    var rollValue = roll();
+    var assessed = assessRoll(rollValue);
+    $("#rollValue").text(rollValue);
+    $("#roundTotal").text(assessed);
 
+  })
 });
