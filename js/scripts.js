@@ -18,7 +18,11 @@ var newPerson = new Player("chris");
 
 Player.prototype.generateScore = function(newPoints){
   this.totalScore = this.totalScore + newPoints;
+  if(this.totalScore >= 100){
+    alert("you win!");
+  }
 }
+
 var rollTotal = 0;
 var roll = function(){
   var individualRoll= Math.floor((Math.random() * 6) + 1);
