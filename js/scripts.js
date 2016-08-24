@@ -20,12 +20,18 @@ function Player (name){
 
 Player.prototype.roll = function(){
   this.currentRoll =  Math.floor((Math.random() * 6) + 1);
+  if(this.currentRoll === 1){
+    this.currentRollTotal = 0;
+  }
+  else{
   this.currentRollTotal += this.currentRoll;
+  }
   return  this.currentRoll;
 }
 
 Player.prototype.endTurn = function(){
 this.totalScore += this.currentRollTotal;
+this.currentRollTotal = 0;
 return this.totalScore;
 }
 
