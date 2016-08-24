@@ -1,0 +1,14 @@
+
+#player1name, #player2name{
+  font-size: 5em;
+  color:blue;
+}
+.red{
+color: red !important;
+}
+img{
+  max-width: 10%;
+  position:absolute;
+
+
+}

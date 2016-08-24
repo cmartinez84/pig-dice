@@ -22,6 +22,7 @@ Player.prototype.roll = function(){
   this.currentRoll =  Math.floor((Math.random() * 6) + 1);
   if(this.currentRoll === 1){
     this.currentRollTotal = 0;
+    this.endTurn();
   }
   else{
   this.currentRollTotal += this.currentRoll;
@@ -30,9 +31,12 @@ Player.prototype.roll = function(){
 }
 
 Player.prototype.endTurn = function(){
-this.totalScore += this.currentRollTotal;
-this.currentRollTotal = 0;
-return this.totalScore;
+  this.totalScore += this.currentRollTotal;
+  this.currentRollTotal = 0;
+  if(this.totalScore >= 100){
+    console.log("succes");
+  }
+  return this.totalScore;
 }
 
 
@@ -42,6 +46,7 @@ return this.totalScore;
 $(function() {
   $("form#playerOptions").submit(function(event){
     event.preventDefault();
+    $("img").addClass("animated");
     var player1 = $("input#inputtedPlayer1").val();
     var player2 = $("input#inputtedPlayer2").val();
     var player1 = new Player(player1);
@@ -53,9 +58,15 @@ $(function() {
 
     var changePlayer1 = function(){
       $("button").off();
+      $("#player1name").toggleClass("red");
+      $("#player2name").toggleClass("red");
       $("#buttonRoll").click(function(){
-          $("#rollValue").text(player1.roll());
+          var rollValue = player1.roll();
+          $("#rollValue").text(rollValue);
           $("#roundTotal").text(player1.currentRollTotal);
+          if(rollValue === 1){
+            changePlayer2();
+          }
         });
       $("#buttonPass").click(function(){
         $("#player1total").text(player1.endTurn());
@@ -64,9 +75,15 @@ $(function() {
     };
     var changePlayer2 = function(){
       $("button").off();
+      $("#player1name").toggleClass("red");
+      $("#player2name").toggleClass("red");
       $("#buttonRoll").click(function(){
-          $("#rollValue").text(player2.roll());
-          $("#roundTotal").text(player2.currentRollTotal);
+        var rollValue = player2.roll()
+        $("#rollValue").text(rollValue);
+        $("#roundTotal").text(player2.currentRollTotal);
+        if(rollValue === 1){
+          changePlayer1();
+        }
         });
       $("#buttonPass").click(function(){
         $("#player2total").text(player2.endTurn());
