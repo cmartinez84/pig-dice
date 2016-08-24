@@ -13,36 +13,23 @@
 function Player (name){
   this.name = name;
   this.totalScore = 0;
+  this.currentRoll = 0;
+  this.currentRollTotal = 0;
 }
 
 
-Player.prototype.generateScore = function(newPoints){
-  this.totalScore = this.totalScore + newPoints;
-  if(this.totalScore >= 100){
-    alert("you win!");
-  }
+Player.prototype.roll = function(){
+  this.currentRoll =  Math.floor((Math.random() * 6) + 1);
+  this.currentRollTotal += this.currentRoll;
+  return  this.currentRoll;
 }
-var roll = function(){
-   return Math.floor((Math.random() * 6) + 1);
-}
-var rollTotal = 0;
-var assessRoll = function(value){
-  if(value === 1){
-    rollTotal = 0;
-    return rollTotal;
-  }
-  else{
-    rollTotal += value;
-  }
-  return rollTotal;
+
+Player.prototype.endTurn = function(){
+this.totalScore += this.currentRollTotal;
+return this.totalScore;
 }
 
 
-
-
-var pass = function(){
-  newPerson.generateScore(rollTotal);
-}
 
 // front end
 
@@ -57,16 +44,32 @@ $(function() {
     $("#player1total").text(player1.totalScore);
     $("#player2name").text(player2.name);
     $("#player2total").text(player2.totalScore);
-    $("#buttonPass").click(function(){
-      player1.generateScore(rollTotal);
-      $("#player1total").text(player1.totalScore);
-    });
+
+    var changePlayer1 = function(){
+      $("button").off();
+      $("#buttonRoll").click(function(){
+          $("#rollValue").text(player1.roll());
+          $("#roundTotal").text(player1.currentRollTotal);
+        });
+      $("#buttonPass").click(function(){
+        $("#player1total").text(player1.endTurn());
+        changePlayer2();
+      });
+    };
+    var changePlayer2 = function(){
+      $("button").off();
+      $("#buttonRoll").click(function(){
+          $("#rollValue").text(player2.roll());
+          $("#roundTotal").text(player2.currentRollTotal);
+        });
+      $("#buttonPass").click(function(){
+        $("#player2total").text(player2.endTurn());
+        changePlayer1();
+      });
+    };
+    changePlayer1();
   });// end submit
-  $("#buttonRoll").click(function(){
-    var rollValue = roll();
-    var assessed = assessRoll(rollValue);
-    $("#rollValue").text(rollValue);
-    $("#roundTotal").text(assessed);
-  });
+
+
 
 });
