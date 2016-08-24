@@ -22,7 +22,12 @@ Player.prototype.generateScore = function(newPoints){
 var rollTotal = 0;
 var roll = function(){
   var individualRoll= Math.floor((Math.random() * 6) + 1);
-  rollTotal += individualRoll;
+  if(individualRoll === 1){
+    rollTotal = 0;
+  }
+  else{
+    rollTotal += individualRoll;
+  }
   console.log(rollTotal);
 }
 newPerson.generateScore(rollTotal);
