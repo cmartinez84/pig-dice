@@ -57,12 +57,16 @@ $(function() {
     $("#player1total").text(player1.totalScore);
     $("#player2name").text(player2.name);
     $("#player2total").text(player2.totalScore);
+    $("#buttonPass").click(function(){
+      player1.generateScore(rollTotal);
+      $("#player1total").text(player1.totalScore);
+    });
   });// end submit
   $("#buttonRoll").click(function(){
     var rollValue = roll();
     var assessed = assessRoll(rollValue);
     $("#rollValue").text(rollValue);
     $("#roundTotal").text(assessed);
+  });
 
-  })
 });
