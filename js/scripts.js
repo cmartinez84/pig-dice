@@ -34,4 +34,6 @@ var roll = function(){
   }
   console.log(rollTotal);
 }
-newPerson.generateScore(rollTotal);
+var pass = function(){
+  newPerson.generateScore(rollTotal);
+}
