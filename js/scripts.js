@@ -45,10 +45,14 @@ var pass = function(){
 $(function() {
   $("form#playerOptions").submit(function(event){
     event.preventDefault();
-    var player1 = $("input#player1-name").val();
-    var player2 = $("input#player2-name").val();
+    var player1 = $("input#inputtedPlayer1").val();
+    var player2 = $("input#inputtedPlayer2").val();
     var player1 = new Player(player1);
     var player2 = new Player(player2);
-    console.log(player1);
-  });
+    $("#player1name").text(player1.name);
+    $("#player1total").text(player1.totalScore);
+    $("#player2name").text(player2.name);
+    $("#player2total").text(player2.totalScore);
+  });// end submit
+
 });
