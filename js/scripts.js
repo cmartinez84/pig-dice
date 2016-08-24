@@ -19,11 +19,10 @@ var newPerson = new Player("chris");
 Player.prototype.generateScore = function(newPoints){
   this.totalScore = this.totalScore + newPoints;
 }
-var scoreKeeper;
+var rollTotal = 0;
 var roll = function(){
-  var playerScore = 0;
   var individualRoll= Math.floor((Math.random() * 6) + 1);
-  playerScore += individualRoll;
-  newPerson.generateScore(playerScore);
-  console.log(newPerson.totalScore);
+  rollTotal += individualRoll;
+  console.log(rollTotal);
 }
+newPerson.generateScore(rollTotal);
