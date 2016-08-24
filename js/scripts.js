@@ -14,7 +14,7 @@ function Player (name){
   this.name = name;
   this.totalScore = 0;
 }
-var newPerson = new Player("chris");
+
 
 Player.prototype.generateScore = function(newPoints){
   this.totalScore = this.totalScore + newPoints;
@@ -28,12 +28,27 @@ var roll = function(){
   var individualRoll= Math.floor((Math.random() * 6) + 1);
   if(individualRoll === 1){
     rollTotal = 0;
+    pass();
   }
   else{
     rollTotal += individualRoll;
   }
   console.log(rollTotal);
 }
+
 var pass = function(){
   newPerson.generateScore(rollTotal);
 }
+
+// front end
+
+$(function() {
+  $("form#playerOptions").submit(function(event){
+    event.preventDefault();
+    var player1 = $("input#player1-name").val();
+    var player2 = $("input#player2-name").val();
+    var player1 = new Player(player1);
+    var player2 = new Player(player2);
+    console.log(player1);
+  });
+});
