@@ -44,7 +44,7 @@ $(function() {
   $(".cubeFace").text("");
 
 
-  function rollingState(die1value,die2value){
+  function rollingState(die1value,die2value, rollTotal){
     $(".side1").text(1);
     $(".side2").text(2);
     $(".side3").text(3);
@@ -53,17 +53,19 @@ $(function() {
     $(".side6").text(6);
     $(".d6").removeClass("slower");
     $(".d6").addClass("faster");
-    setTimeout(afterRolling1,4000);
+    setTimeout(afterRolling1,3000);
     setTimeout(afterRolling2,2000);
     function afterRolling1 (){
       $(".die1Position .cubeFace  ").text(die1value);
       $(".die1Position").removeClass("faster");
       $(".die1Position").addClass("slower");
+      $("#roundTotal").text(rollTotal);
     };
     function afterRolling2 (){
       $(".die2Position .cubeFace").text(die2value);
       $(".die2Position").removeClass("faster");
       $(".die2Position").addClass("slower");
+
     };
   };
 
@@ -91,9 +93,7 @@ $(function() {
       $("#buttonRoll").click(function(){
         $("#buttonPass").prop("disabled", false);
           var rollValue = player1.roll();
-          rollingState(player1.dice1, player1.dice2);
-          $("#rollValue").text(rollValue);
-          $("#roundTotal").text(player1.currentRollTotal);
+          rollingState(player1.dice1, player1.dice2, player1.currentRollTotal);
           if(player1.dice1 ===1 || player1.dice2 ===1){
             changePlayer2();
           }
@@ -116,9 +116,7 @@ $(function() {
 
         $("#buttonPass").prop("disabled", false);
         var rollValue = player2.roll();
-        rollingState(player2.dice1, player2.dice2);
-        $("#rollValue").text(rollValue);
-        $("#roundTotal").text(player2.currentRollTotal);
+        rollingState(player2.dice1, player2.dice2, player2.currentRollTotal);
         if(player2.dice1 ===1 || player2.dice2 ===1){
           changePlayer1();
         }
