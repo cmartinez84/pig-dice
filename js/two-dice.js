@@ -37,14 +37,42 @@ Player.prototype.endTurn = function(){
   return this.totalScore;
 }
 
-
-
 // front end
 
 $(function() {
+  $(".flyingPig").hide();
+  $(".cubeFace").text("");
+
+
+  function rollingState(die1value,die2value){
+    $(".side1").text(1);
+    $(".side2").text(2);
+    $(".side3").text(3);
+    $(".side4").text(4);
+    $(".side5").text(5);
+    $(".side6").text(6);
+    $(".d6").removeClass("slower");
+    $(".d6").addClass("faster");
+    setTimeout(afterRolling1,4000);
+    setTimeout(afterRolling2,2000);
+    function afterRolling1 (){
+      $(".die1Position .cubeFace  ").text(die1value);
+      $(".die1Position").removeClass("faster");
+      $(".die1Position").addClass("slower");
+    };
+    function afterRolling2 (){
+      $(".die2Position .cubeFace").text(die2value);
+      $(".die2Position").removeClass("faster");
+      $(".die2Position").addClass("slower");
+    };
+  };
+
+
   $("form#playerOptions").submit(function(event){
+    $(".flyingpig2").toggle();
     event.preventDefault();
-    $("img").addClass("animated");
+    $( ".cubeFace").addClass("red");
+
     var player1 = $("input#inputtedPlayer1").val();
     var player2 = $("input#inputtedPlayer2").val();
     var player1 = new Player(player1);
@@ -58,11 +86,12 @@ $(function() {
       $("button").off();
       $("#player1name").toggleClass("red");
       $("#player2name").toggleClass("red");
+      $(".flyingpig1").toggle();
+      $(".flyingpig2").toggle();
       $("#buttonRoll").click(function(){
         $("#buttonPass").prop("disabled", false);
           var rollValue = player1.roll();
-          $("#dice1").text(player1.dice1);
-          $("#dice2").text(player1.dice2);
+          rollingState(player1.dice1, player1.dice2);
           $("#rollValue").text(rollValue);
           $("#roundTotal").text(player1.currentRollTotal);
           if(player1.dice1 ===1 || player1.dice2 ===1){
@@ -81,11 +110,13 @@ $(function() {
       $("button").off();
       $("#player1name").toggleClass("red");
       $("#player2name").toggleClass("red");
+      $(".flyingpig1").toggle();
+      $(".flyingpig2").toggle();
       $("#buttonRoll").click(function(){
+
         $("#buttonPass").prop("disabled", false);
         var rollValue = player2.roll();
-        $("#dice1").text(player2.dice1);
-        $("#dice2").text(player2.dice2);
+        rollingState(player2.dice1, player2.dice2);
         $("#rollValue").text(rollValue);
         $("#roundTotal").text(player2.currentRollTotal);
         if(player2.dice1 ===1 || player2.dice2 ===1){
