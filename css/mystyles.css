@@ -48,11 +48,27 @@ img{
   color: white;
   border: none;
   z-index: 99;
-  /*margin-left: -300px;*/
+  margin-left: -300px;
+}
+.options button{
+  font-size: 5em;
+  border: 2px solid white;
+  color: white;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 40px
+}
+.options{
+  position: absolute;
+  bottom: 0;
+  right: 25%;
+}
+.options button:hover{
+  background: black;
 }
 .onLoad{
-  /*transform: translate(300px,0);
-  transition: all 2s;*/
+  transform: translate(300px,0);
+  transition: all 2s;
 }
 .options{
   position: absolute;

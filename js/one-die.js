@@ -1,33 +1,4 @@
 
-function Player (name){
-  this.name = name;
-  this.totalScore = 0;
-  this.currentRoll = 0;
-  this.currentRollTotal = 0;
-}
-
-Player.prototype.roll = function(){
-  this.currentRoll =  Math.floor((Math.random() * 6) + 1);
-  if(this.currentRoll === 1){
-    this.currentRollTotal = 0;
-    this.endTurn();
-  }
-  else{
-  this.currentRollTotal += this.currentRoll;
-  }
-  return  this.currentRoll;
-}
-
-Player.prototype.endTurn = function(){
-  this.totalScore += this.currentRollTotal;
-  this.currentRollTotal = 0;
-  if(this.totalScore >= 100){
-    console.log("succes");
-  }
-  return this.totalScore;
-}
-
-
 
 // front end
 
@@ -37,8 +8,8 @@ $(function() {
     $("img").addClass("animated");
     var player1 = $("input#inputtedPlayer1").val();
     var player2 = $("input#inputtedPlayer2").val();
-    var player1 = new Player(player1);
-    var player2 = new Player(player2);
+    var player1 = new OneDie(player1);
+    var player2 = new OneDie(player2);
     $("#player1name").text(player1.name);
     $("#player1total").text(player1.totalScore);
     $("#player2name").text(player2.name);
