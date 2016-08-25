@@ -41,10 +41,18 @@ Player.prototype.endTurn = function(){
 
 $(function() {
   $(".flyingPig").hide();
-  $(".cubeFace").text("");
+  $(".cubeFace ").text("");
   $(".well").addClass("onLoad");
-  
 
+
+  $("#buttonOneDie").click(function(){
+    $(".die2Position").fadeOut();
+    $(".die1Position").addClass("blowUp")
+    $(".options").fadeOut();
+  })
+  $("#buttonTwoDie").click(function(){
+    $(".options").fadeOut();
+  })
 
   function rollingState(die1value,die2value, rollTotal){
     $(".side1").text(1);

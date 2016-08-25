@@ -32,11 +32,11 @@ h1{
   /*transform: rotate(3000deg) !important;*/
   transition: all 3s !important;
 }
+
 img{
   max-width: 10%;
   position:absolute;
 }
-
 
 .well{
   position: absolute;
@@ -48,11 +48,19 @@ img{
   color: white;
   border: none;
   z-index: 99;
-  margin-left: -300px;
+  /*margin-left: -300px;*/
 }
 .onLoad{
-  transform: translate(300px,0);
-  transition: all 2s;
+  /*transform: translate(300px,0);
+  transition: all 2s;*/
+}
+.options{
+  position: absolute;
+  top: 45%;
+  left: 45%;
+}
+.smallFont{
+  font-size: 2em !important
 }
 .playerNameDisplay{
   position: absolute;
