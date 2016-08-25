@@ -42,6 +42,8 @@ Player.prototype.endTurn = function(){
 $(function() {
   $(".flyingPig").hide();
   $(".cubeFace").text("");
+  $(".well").addClass("onLoad");
+  
 
 
   function rollingState(die1value,die2value, rollTotal){
